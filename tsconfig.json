@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist",
+    "moduleResolution": "bundler",
+    "outDir": "./dist",
+    "target": "esnext",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "module": "preserve"
+  },
+  "include": ["./src/**/*"]
+}

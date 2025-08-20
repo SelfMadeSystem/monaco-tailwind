@@ -1,0 +1,64 @@
+{
+  "name": "monaco-tailwind",
+  "version": "0.1.0-alpha.1",
+  "author": "SelfMadeSystem",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SelfMadeSystem/monaco-tailwind.git"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@types/bun": "^1.2.20",
+    "typescript": "^5.8.3",
+    "typescript-standard": "^0.3.30"
+  },
+  "bugs": {
+    "url": "https://github.com/SelfMadeSystem/monaco-tailwind/issues"
+  },
+  "description": "A Monaco Editor language server for Tailwind CSS",
+  "directories": {
+    "test": "test"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./*": {
+      "import": "./dist/*.js",
+      "require": "./dist/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
+  "homepage": "https://github.com/SelfMadeSystem/monaco-tailwind#readme",
+  "keywords": [
+    "exi",
+    "json"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf dist && mkdir -p dist",
+    "build": "bun run typecheck && bun run compile",
+    "typecheck": "tsc --noEmit",
+    "compile": "tsc && bun build src/tailwind.worker.ts --outdir dist --target browser",
+    "dev": "bun run typecheck && bun run compile --watch",
+    "publish": "bun run build && bun publish"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^4.1.0",
+    "@tailwindcss/language-service": "^0.14.26",
+    "monaco-editor": "^0.52.2",
+    "monaco-languageserver-types": "^0.4.0",
+    "monaco-marker-data-provider": "^1.2.4",
+    "monaco-types": "^0.1.0",
+    "monaco-worker-manager": "^2.0.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12",
+    "vscode-languageserver-protocol": "^3.17.5",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  }
+}
