@@ -1,6 +1,6 @@
 {
   "name": "monaco-tailwind",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "author": "SelfMadeSystem",
   "repository": {
     "type": "git",
@@ -36,8 +36,15 @@
   ],
   "homepage": "https://github.com/SelfMadeSystem/monaco-tailwind#readme",
   "keywords": [
-    "exi",
-    "json"
+    "monaco",
+    "monaco-editor",
+    "tailwind",
+    "tailwindcss",
+    "language-server",
+    "web-worker",
+    "css",
+    "intellisense",
+    "autocomplete"
   ],
   "license": "MIT",
   "scripts": {
