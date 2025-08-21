@@ -92,6 +92,7 @@ window.MonacoEnvironment = {
 
 ## Related projects
 
+- [demo page](https://selfmadesystem.github.io/monaco-tailwind) - A demo page for this package
 - [monaco-tailwindcss](https://monaco-tailwindcss.js.org) - like this package, but for TailwindCSS v3.0 and made by [Remco Haszing](https://remcohaszing.nl)
 - [monaco-unified](https://monaco-unified.js.org)
 - [monaco-yaml](https://monaco-yaml.js.org)
