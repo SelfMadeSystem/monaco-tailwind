@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monaco Tailwind CSS Example</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #1e1e1e;
+        color: #d4d4d4;
+      }
+
+      .header {
+        background: #2d2d30;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #3e3e42;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: #ffffff;
+        font-size: 1.5rem;
+      }
+
+      .header p {
+        margin: 0.5rem 0 0 0;
+        color: #cccccc;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        display: flex;
+        height: calc(100vh - 100px);
+      }
+
+      .editor-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .editor-tabs {
+        background: #2d2d30;
+        display: flex;
+        border-bottom: 1px solid #3e3e42;
+      }
+
+      .tab-button {
+        background: #2d2d30;
+        border: none;
+        color: #cccccc;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        font-size: 0.85rem;
+        border-right: 1px solid #3e3e42;
+        transition: background-color 0.2s;
+      }
+
+      .tab-button:hover {
+        background: #3e3e42;
+      }
+
+      .tab-button.active {
+        background: #252526;
+        color: #ffffff;
+      }
+
+      .editor-header {
+        background: #252526;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #3e3e42;
+        font-size: 0.85rem;
+        color: #cccccc;
+      }
+
+      .editor-container {
+        flex: 1;
+        position: relative;
+      }
+
+      .preview-panel {
+        flex: 1;
+        background: #ffffff;
+        border-left: 1px solid #3e3e42;
+      }
+
+      .preview-header {
+        background: #f3f3f3;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #e1e1e1;
+        font-size: 0.85rem;
+        color: #333333;
+      }
+
+      .preview-container {
+        height: calc(100% - 40px);
+        overflow: hidden;
+      }
+
+      .preview-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: #cccccc;
+      }
+
+      .loading-icon {
+        display: inline-block;
+        border: 4px solid #0000;
+        border-top-color: #007acc;
+        border-radius: 50%;
+        position: absolute;
+        margin-left: 4px;
+        width: 14px;
+        height: 14px;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Monaco Tailwind CSS Example</h1>
+      <p>
+        Experience Tailwind CSS autocompletion and intellisense in Monaco Editor
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="editor-panel">
+        <div class="editor-tabs">
+          <button class="tab-button active" data-tab="html">HTML</button>
+          <button class="tab-button" data-tab="css">CSS</button>
+          <button class="tab-button" data-tab="output-css">Output CSS</button>
+        </div>
+        <div class="editor-header">
+          <span id="editor-header-text"
+            >HTML Editor - Try typing Tailwind classes with autocompletion</span
+          >
+        </div>
+        <div class="editor-container">
+          <div id="editor" class="loading">Loading Monaco Editor...</div>
+        </div>
+      </div>
+
+      <div class="preview-panel">
+        <div class="preview-header">
+          Live Preview
+          <span class="loading-icon" id="live-loading"></span>
+        </div>
+        <div class="preview-container">
+          <iframe id="preview" class="preview-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
