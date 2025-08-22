@@ -1,6 +1,6 @@
-export { tailwindcssData } from "./cssData";
-import { TailwindHandler, TailwindMonacoConfig } from "./TailwindHandler";
-export { defaultLanguageSelector } from "./TailwindHandler";
+export { tailwindcssData } from './cssData';
+import { TailwindHandler, TailwindMonacoConfig } from './TailwindHandler';
+export { defaultLanguageSelector } from './TailwindHandler';
 
 /**
  * Configures the Monaco Editor instance to support Tailwind CSS features.
@@ -13,8 +13,8 @@ export { defaultLanguageSelector } from "./TailwindHandler";
  * @returns The initialized `TailwindHandler` instance.
  */
 export function configureMonacoTailwindcss(
-  monaco: typeof import("monaco-editor"),
-  options: Partial<TailwindMonacoConfig> = { }
+  monaco: typeof import('monaco-editor'),
+  options: Partial<TailwindMonacoConfig> = {},
 ) {
   const handler = new TailwindHandler();
   handler.configureMonaco(monaco, options);
