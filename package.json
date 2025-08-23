@@ -9,6 +9,7 @@
   "main": "dist/index.js",
   "devDependencies": {
     "@types/bun": "^1.2.20",
+    "prettier": "3.6.2",
     "typescript": "^5.8.3",
     "typescript-standard": "^0.3.30"
   },

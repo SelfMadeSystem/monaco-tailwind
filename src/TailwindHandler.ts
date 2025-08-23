@@ -1,21 +1,21 @@
-import type * as m from "monaco-editor";
-import { tailwindcssData } from "./cssData";
+import type * as m from 'monaco-editor';
+import { tailwindcssData } from './cssData';
 import {
   createCodeActionProvider,
   createColorProvider,
   createHoverProvider,
   createMarkerDataProvider,
-} from "./providers";
+} from './providers';
 import type {
   RealTailwindcssWorker,
   TailwindcssWorker,
-} from "./tailwind.worker";
+} from './tailwind.worker';
 import {
   fromCompletionContext,
   fromPosition,
   toCompletionList,
-} from "monaco-languageserver-types";
-import { registerMarkerDataProvider } from "monaco-marker-data-provider";
+} from 'monaco-languageserver-types';
+import { registerMarkerDataProvider } from 'monaco-marker-data-provider';
 
 /**
  * Represents the result of compiling CSS with Tailwind class extraction.
@@ -49,16 +49,16 @@ export type TailwindMonacoConfig = {
 let worker: m.editor.MonacoWebWorker<RealTailwindcssWorker> | null = null;
 
 export const defaultLanguageSelector = [
-  "css",
-  "javascript",
-  "html",
-  "mdx",
-  "typescript",
+  'css',
+  'javascript',
+  'html',
+  'mdx',
+  'typescript',
 ] as const;
 
 export async function getWorker(...resources: m.Uri[]) {
   if (!worker) {
-    throw new Error("Monaco worker not initialized");
+    throw new Error('Monaco worker not initialized');
   }
   return worker.withSyncedResources(resources);
 }
@@ -83,11 +83,11 @@ export async function getWorker(...resources: m.Uri[]) {
  * ```
  */
 export class TailwindHandler {
-  private previousCss = "";
+  private previousCss = '';
   private previousClasses: string[] = [];
-  private previousBuildCss: Awaited<ReturnType<TailwindcssWorker["buildCss"]>> =
+  private previousBuildCss: Awaited<ReturnType<TailwindcssWorker['buildCss']>> =
     {
-      css: "",
+      css: '',
       tailwindClasses: [],
       notTailwindClasses: [],
     };
@@ -108,11 +108,11 @@ export class TailwindHandler {
     monaco: typeof m,
     {
       languageSelector = defaultLanguageSelector,
-    }: Partial<TailwindMonacoConfig> = {}
+    }: Partial<TailwindMonacoConfig> = {},
   ): m.IDisposable {
     const ww = monaco.editor.createWebWorker<RealTailwindcssWorker>({
-      label: "tailwindcss",
-      moduleId: "/tailwindcss/tailwind.worker",
+      label: 'tailwindcss',
+      moduleId: '/tailwindcss/tailwind.worker',
     });
 
     worker = ww;
@@ -133,19 +133,19 @@ export class TailwindHandler {
       ww,
       monaco.languages.registerCompletionItemProvider(
         languageSelector,
-        createCompletionItemProvider()
+        createCompletionItemProvider(),
       ),
       monaco.languages.registerColorProvider(
         languageSelector,
-        createColorProvider(monaco, getWorker)
+        createColorProvider(monaco, getWorker),
       ),
       monaco.languages.registerHoverProvider(
         languageSelector,
-        createHoverProvider(getWorker)
+        createHoverProvider(getWorker),
       ),
       monaco.languages.registerCodeActionProvider(
         languageSelector,
-        createCodeActionProvider(getWorker)
+        createCodeActionProvider(getWorker),
       ),
     ];
 
@@ -154,14 +154,14 @@ export class TailwindHandler {
         registerMarkerDataProvider(
           monaco,
           language,
-          createMarkerDataProvider(getWorker)
-        )
+          createMarkerDataProvider(getWorker),
+        ),
       );
     }
 
     return {
       dispose() {
-        disposables.forEach((d) => d.dispose());
+        disposables.forEach(d => d.dispose());
       },
     };
   }
@@ -178,11 +178,11 @@ export class TailwindHandler {
   public async buildCss(
     css: string,
     classes: string[],
-    files: Record<string, string>
+    files: Record<string, string>,
   ): Promise<CssCompilerResult> {
     if (
       this.previousCss === css &&
-      classes.every((c) => this.previousClasses.includes(c))
+      classes.every(c => this.previousClasses.includes(c))
     ) {
       return this.previousBuildCss;
     }
@@ -208,7 +208,7 @@ function createCompletionItemProvider(): m.languages.CompletionItemProvider {
         model.uri.toString(),
         model.getLanguageId(),
         fromPosition(position),
-        fromCompletionContext(context)
+        fromCompletionContext(context),
       );
 
       if (!completionList) {
